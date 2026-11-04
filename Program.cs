@@ -15,7 +15,7 @@ namespace WheelOfFortune
         private static void Play(Contestant[] data)
         {
             Random rand = new Random();
-            Console.WriteLine("");
+            Console.WriteLine("Here are the finalists:");
             int[] playerNums = new int[10];
             int temp;
             int dupe;
@@ -38,10 +38,13 @@ namespace WheelOfFortune
                 }
                 playerNums[i] = temp;
             }
+            Console.WriteLine("  First Name\tLast Name\t\tInterest\t\tScore ");
             for (int i = 0; i < playerNums.Length; i++)
             {
-                Console.WriteLine($"{i + 1}: {data[playerNums[i]].firstName}");
+                Console.WriteLine($"  {data[playerNums[i]].firstName, -16}{data[playerNums[i]].lastName,-24}{data[playerNums[i]].hobby,-16}\t{data[playerNums[i]].score,3}");
             }
+            Console.ReadLine();
+            Console.WriteLine("Todays contestant is...");
             Console.ReadLine();
         }
         static void Display(Contestant[] contestants)
@@ -105,7 +108,8 @@ namespace WheelOfFortune
                 Console.Clear();
                 Console.WriteLine("Main Menu:");
                 Console.WriteLine("1: Play\n2: Show/Edit contestants\n3: Task3\n4: Task4\n0: Exit");
-                int input = Convert.ToInt32(Console.ReadLine());
+                int input;
+                int.TryParse(Console.ReadLine(), out input);
                 Console.Clear();
                 switch (input)
                 {
