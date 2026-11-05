@@ -1,6 +1,6 @@
 ﻿using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace WheelOfFortune
+namespace SethSouquet
 {
     public struct Contestant
     {
@@ -9,7 +9,7 @@ namespace WheelOfFortune
         public string hobby;
         public int score;
     }
-    internal class Program
+    internal class wof
     {
         //menu options
         private static void Play(Contestant[] data)
@@ -23,7 +23,7 @@ namespace WheelOfFortune
             for (int i = 0; i < playerNums.Length; i++)
             {
                 dupe = 0;
-                temp = rand.Next(0, 23);
+                temp = rand.Next(0, data.Length);
                 while (dupe < i)
                 {
                     if (playerNums[dupe] != temp)
@@ -32,24 +32,26 @@ namespace WheelOfFortune
                     }
                     else
                     {
-                        temp = rand.Next(0, 23);
+                        temp = rand.Next(0, data.Length);
                         dupe = 0;
                     }
                 }
                 playerNums[i] = temp;
             }
-            Console.WriteLine("  First Name\tLast Name\t\tInterest\t\tScore ");
+            Console.WriteLine($"  {"First Name",-16}{"Last Name",-24}{"Interest",-16}{"Score",9}");
             for (int i = 0; i < playerNums.Length; i++)
             {
-                Console.WriteLine($"  {data[playerNums[i]].firstName, -16}{data[playerNums[i]].lastName,-24}{data[playerNums[i]].hobby,-16}\t{data[playerNums[i]].score,3}");
+                Console.WriteLine($"  {data[playerNums[i]].firstName, -16}{data[playerNums[i]].lastName,-24}{data[playerNums[i]].hobby,-16}{data[playerNums[i]].score,8}");
             }
             Console.ReadLine();
             Console.WriteLine("Todays contestant is...");
+            Contestant contestant = data[playerNums[rand.Next(0, playerNums.Length)]];
+            Console.WriteLine($"{contestant.firstName}");
             Console.ReadLine();
         }
         static void Display(Contestant[] contestants)
         {
-            Console.WriteLine("First Name\tLast Name\t\tInterest\t\tScore ");
+            Console.WriteLine($"{"First Name",-16}{"Last Name",-24}{"Interest",-16}{"Score",5}");
             foreach (Contestant person in contestants)
             {
                 Console.WriteLine($"{person.firstName,-16}{person.lastName,-24}{person.hobby,-16}\t{person.score,3}");
